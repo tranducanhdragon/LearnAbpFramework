@@ -18,7 +18,6 @@ namespace Acme.BookStore.Genres
             CreateUpdateGenreDto>, //Used to create/update a book
         IGenreAppService //implement the IBookAppService
     {
-        private readonly IAuthorRepository _genreRepository;
         public GenreAppService(IRepository<Genre, Guid> repository) : base(repository)
         {
 
