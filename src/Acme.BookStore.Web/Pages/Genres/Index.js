@@ -10,7 +10,7 @@
             order: [[1, "asc"]],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getList),
+            ajax: abp.libs.datatables.createAjax(acme.bookStore.genres.genre.getList),
             columnDefs: [
                 {
                     title: l('Actions'),
@@ -20,9 +20,9 @@
                                 {
                                     text: l('Edit'),
                                     //visible: abp.auth.isGranted('BookStore.Genres.Edit'),
-                                    action: function (data) {
-                                        editModal.open({ id: data.record.id });
-                                    }
+                                    //action: function (data) {
+                                    //    editModal.open({ id: data.record.id });
+                                    //}
                                 },
                                 {
                                     text: l('Delete'),

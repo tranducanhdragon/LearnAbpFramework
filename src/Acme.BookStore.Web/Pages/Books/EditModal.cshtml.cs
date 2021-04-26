@@ -18,9 +18,9 @@ namespace Acme.BookStore.Web.Pages.Books
 
         public List<SelectListItem> Authors { get; set; }
 
-        private readonly IGenreAppService _bookAppService;
+        private readonly IBookAppService _bookAppService;
 
-        public EditModalModel(IGenreAppService bookAppService)
+        public EditModalModel(IBookAppService bookAppService)
         {
             _bookAppService = bookAppService;
         }
@@ -28,7 +28,7 @@ namespace Acme.BookStore.Web.Pages.Books
         public async Task OnGetAsync(Guid id)
         {
             var bookDto = await _bookAppService.GetAsync(id);
-            Book = ObjectMapper.Map<GenreDto, EditBookViewModel>(bookDto);
+            Book = ObjectMapper.Map<BookDto, EditBookViewModel>(bookDto);
 
             var authorLookup = await _bookAppService.GetAuthorLookupAsync();
             Authors = authorLookup.Items
@@ -40,7 +40,7 @@ namespace Acme.BookStore.Web.Pages.Books
         {
             await _bookAppService.UpdateAsync(
                 Book.Id,
-                ObjectMapper.Map<EditBookViewModel, CreateUpdateGenreDto>(Book)
+                ObjectMapper.Map<EditBookViewModel, CreateUpdateBookDto>(Book)
             );
 
             return NoContent();

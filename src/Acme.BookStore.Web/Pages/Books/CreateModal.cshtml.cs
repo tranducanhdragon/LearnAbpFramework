@@ -18,10 +18,10 @@ namespace Acme.BookStore.Web.Pages.Books
 
         public List<SelectListItem> Authors { get; set; }
 
-        private readonly IGenreAppService _bookAppService;
+        private readonly IBookAppService _bookAppService;
 
         public CreateModalModel(
-            IGenreAppService bookAppService)
+            IBookAppService bookAppService)
         {
             _bookAppService = bookAppService;
         }
@@ -39,7 +39,7 @@ namespace Acme.BookStore.Web.Pages.Books
         public async Task<IActionResult> OnPostAsync()
         {
             await _bookAppService.CreateAsync(
-                ObjectMapper.Map<CreateBookViewModel, CreateUpdateGenreDto>(Book)
+                ObjectMapper.Map<CreateBookViewModel, CreateUpdateBookDto>(Book)
                 );
             return NoContent();
         }

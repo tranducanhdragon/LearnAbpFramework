@@ -8,8 +8,8 @@ namespace Acme.BookStore
     {
         public BookStoreApplicationAutoMapperProfile()
         {
-            CreateMap<Book, GenreDto>();
-            CreateMap<CreateUpdateGenreDto, Book>();
+            CreateMap<Book, BookDto>();
+            CreateMap<CreateUpdateBookDto, Book>();
 
             CreateMap<Author, AuthorDto>();
             CreateMap<Author, AuthorLookupDto>();

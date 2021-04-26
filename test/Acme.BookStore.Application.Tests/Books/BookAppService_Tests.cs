@@ -11,12 +11,12 @@ namespace Acme.BookStore.Books
 {
     public class BookAppService_Tests : BookStoreApplicationTestBase
     {
-        private readonly IGenreAppService _bookAppService;
+        private readonly IBookAppService _bookAppService;
         private readonly IAuthorAppService _authorAppService;
 
         public BookAppService_Tests()
         {
-            _bookAppService = GetRequiredService<IGenreAppService>();
+            _bookAppService = GetRequiredService<IBookAppService>();
             _authorAppService = GetRequiredService<IAuthorAppService>();
         }
 
@@ -41,7 +41,7 @@ namespace Acme.BookStore.Books
 
             //Act
             var result = await _bookAppService.CreateAsync(
-                new CreateUpdateGenreDto
+                new CreateUpdateBookDto
                 {
                     AuthorId = firstAuthor.Id,
                     Name = "New test book 42",
@@ -62,7 +62,7 @@ namespace Acme.BookStore.Books
             var exception = await Assert.ThrowsAsync<AbpValidationException>(async () =>
             {
                 await _bookAppService.CreateAsync(
-                    new CreateUpdateGenreDto
+                    new CreateUpdateBookDto
                     {
                         Name = "",
                         Price = 10,
