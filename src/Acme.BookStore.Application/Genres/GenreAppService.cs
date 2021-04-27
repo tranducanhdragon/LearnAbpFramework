@@ -11,18 +11,20 @@ using Volo.Abp.Domain.Repositories;
 namespace Acme.BookStore.Genres
 {
     public class GenreAppService : CrudAppService<
-            Genre, //The Book entity
-            GenreDto, //Used to show books
-            Guid, //Primary key of the book entity
+            Genre, //The Genre entity
+            GenreDto, //Used to show genres
+            Guid, //Primary key of the genre entity
             PagedAndSortedResultRequestDto, //Used for paging/sorting
-            CreateUpdateGenreDto>, //Used to create/update a book
-        IGenreAppService //implement the IBookAppService
+            CreateUpdateGenreDto>, //Used to create/update a genre
+    IGenreAppService //implement the IGenreAppService
     {
-        public GenreAppService(IRepository<Genre, Guid> repository) : base(repository)
+        private readonly IRepository<Genre, Guid> _genre_repo;
+        public GenreAppService(IRepository<Genre, Guid> genre_repo) : base(genre_repo)
         {
-
+            _genre_repo = genre_repo;
         }
         public override async Task<PagedResultDto<GenreDto>> GetListAsync(PagedAndSortedResultRequestDto input) {
+            var genreDtos = _genre_repo.GetListAsync();
             return new PagedResultDto<GenreDto>();       
         }
     }

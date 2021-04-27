@@ -7,6 +7,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using Acme.BookStore.Genres;
 
 namespace Acme.BookStore.EntityFrameworkCore
 {
@@ -27,6 +28,8 @@ namespace Acme.BookStore.EntityFrameworkCore
         public DbSet<Book> Books { get; set; }
 
         public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside BookStoreDbContextModelCreatingExtensions.ConfigureBookStore

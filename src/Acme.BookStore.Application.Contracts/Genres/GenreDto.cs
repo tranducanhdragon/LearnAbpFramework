@@ -1,11 +1,11 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Entities;
 
 namespace Acme.BookStore.Genres
 {
-    public class GenreDto : AuditedEntityDto<Guid>
+    public class GenreDto : EntityDto<Guid>
     {
-        public Guid GenreId { get; set; }
         public string Name { get; set; }
     }
 }

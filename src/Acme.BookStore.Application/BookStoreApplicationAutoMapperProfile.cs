@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Books;
+using Acme.BookStore.Genres;
 using AutoMapper;
 
 namespace Acme.BookStore
@@ -13,6 +14,9 @@ namespace Acme.BookStore
 
             CreateMap<Author, AuthorDto>();
             CreateMap<Author, AuthorLookupDto>();
+
+            CreateMap<Genre, GenreDto>();
+            CreateMap<CreateUpdateGenreDto, Genre>();
         }
     }
 }

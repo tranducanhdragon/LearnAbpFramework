@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Books;
+using Acme.BookStore.Genres;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -35,6 +36,14 @@ namespace Acme.BookStore.EntityFrameworkCore
                     .HasMaxLength(AuthorConsts.MaxNameLength);
 
                 b.HasIndex(x => x.Name);
+            });
+            builder.Entity<Genre>(b =>
+            {
+                b.ToTable(BookStoreConsts.DbTablePrefix + "Genres",
+                    BookStoreConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+
             });
         }
     }
