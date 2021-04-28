@@ -24,8 +24,29 @@ namespace Acme.BookStore.Genres
             _genre_repo = genre_repo;
         }
         public override async Task<PagedResultDto<GenreDto>> GetListAsync(PagedAndSortedResultRequestDto input) {
-            var genreDtos = _genre_repo.GetListAsync();
-            return new PagedResultDto<GenreDto>();       
+            var queryable = await _genre_repo.GetQueryableAsync();
+            var query = from gen in queryable select new { gen};
+
+            //paging
+            query = query
+                .Skip(input.SkipCount)
+                .Take(input.MaxResultCount);
+            //Execute query to get List
+            var queryResult = await AsyncExecuter.ToListAsync(query);
+            //Convert query result to a list of GenreDto object
+            var genreDtos = queryResult.Select(x =>
+                {
+                    var genreDto = ObjectMapper.Map<Genre, GenreDto>(x.gen);
+                    return genreDto;
+                }
+            ).ToList();
+            //get total count for pagedResult
+            var totalCount = await _genre_repo.CountAsync();
+
+            return new PagedResultDto<GenreDto>(
+                totalCount,
+                genreDtos
+            );       
         }
     }
 }

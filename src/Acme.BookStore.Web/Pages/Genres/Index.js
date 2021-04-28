@@ -66,4 +66,8 @@
         })
 
     );
+
+    $('#NewGenreButton').click(function (e) {
+        createModal.open();
+    });
 })
