@@ -17,6 +17,7 @@ namespace Acme.BookStore
 
             CreateMap<Genre, GenreDto>();
             CreateMap<CreateUpdateGenreDto, Genre>();
+            CreateMap<Genre, GenreLookupDto>();
         }
     }
 }

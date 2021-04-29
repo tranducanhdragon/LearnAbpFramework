@@ -22,6 +22,14 @@
                                     //visible: abp.auth.isGranted('BookStore.Genres.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
+                                        //acme.bookStore.genres.genre
+                                        //    .update(data.record.id, data.record)
+                                        //    .then(function () {
+                                        //        abp.notify.info(
+                                        //            l('SuccessfullyUpdated')
+                                        //        );
+                                        //        dataTable.ajax.reload();
+                                        //    });
                                     }
                                 },
                                 {
@@ -34,7 +42,7 @@
                                         );
                                     },
                                     action: function (data) {
-                                        acme.bookStore.books.book
+                                        acme.bookStore.genres.genre
                                             .delete(data.record.id)
                                             .then(function () {
                                                 abp.notify.info(
@@ -66,6 +74,12 @@
         })
 
     );
+    createModal.onResult(function () {
+        dataTable.ajax.reload();
+    })
+    editModal.onResult(function () {
+        dataTable.ajax.reload();
+    })
 
     $('#NewGenreButton').click(function (e) {
         createModal.open();

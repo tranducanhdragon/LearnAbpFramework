@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Acme.BookStore.Authors;
+using Acme.BookStore.Genres;
 using Acme.BookStore.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
@@ -24,13 +25,16 @@ namespace Acme.BookStore.Books
         IBookAppService //implement the IBookAppService
     {
         private readonly IAuthorRepository _authorRepository;
+        private readonly IRepository<Genre, Guid> _genreRepository;
 
         public BookAppService(
             IRepository<Book, Guid> repository,
-            IAuthorRepository authorRepository)
+            IAuthorRepository authorRepository,
+            IRepository<Genre, Guid> genreRepository)
             : base(repository)
         {
             _authorRepository = authorRepository;
+            _genreRepository = genreRepository;
             GetPolicyName = BookStorePermissions.Books.Default;
             GetListPolicyName = BookStorePermissions.Books.Default;
             CreatePolicyName = BookStorePermissions.Books.Create;
@@ -105,7 +109,12 @@ namespace Acme.BookStore.Books
                 ObjectMapper.Map<List<Author>, List<AuthorLookupDto>>(authors)
             );
         }
-        
+        public async Task<ListResultDto<GenreLookupDto>> GetGenreLookupAsync()
+        {
+            var genres = await _genreRepository.GetListAsync();
+            return new ListResultDto<GenreLookupDto>(ObjectMapper.Map<List<Genre>, List<GenreLookupDto>>(genres));
+        }
+
         private static string NormalizeSorting(string sorting)
         {
             if (sorting.IsNullOrEmpty())
@@ -124,5 +133,6 @@ namespace Acme.BookStore.Books
 
             return $"book.{sorting}";
         }
+       
     }
 }
