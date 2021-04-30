@@ -12,6 +12,7 @@
     "NewBook": "New book",
     "Name": "Name",
     "Type": "Type",
+    "Genre":  "Genre",
     "Price": "Price",
     "CreationTime": "Creation time",
     "AreYouSureToDelete": "Are you sure you want to delete this item?",

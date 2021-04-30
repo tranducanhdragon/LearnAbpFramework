@@ -58,17 +58,6 @@
                 {
                     title: l('Name'),
                     data: "name"
-                },
-                {
-                    title: l('CreationTime'),
-                    data: "creationTime",
-                    render: function (data) {
-                        return luxon
-                            .DateTime
-                            .fromISO(data, {
-                                locale: abp.localization.currentCulture.name
-                            }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
-                    }
                 }
             ]
         })

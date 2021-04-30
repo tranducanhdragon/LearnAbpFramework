@@ -73,7 +73,8 @@ namespace Acme.BookStore.Books
             //Prepare a query to join books and authors
             var query = from book in queryable
                 join author in _authorRepository on book.AuthorId equals author.Id
-                select new {book, author};
+                join genre in _genreRepository on book.GenreId equals genre.Id
+                select new {book, author, genre};
 
             //Paging
             query = query
@@ -89,6 +90,7 @@ namespace Acme.BookStore.Books
             {
                 var bookDto = ObjectMapper.Map<Book, BookDto>(x.book);
                 bookDto.AuthorName = x.author.Name;
+                bookDto.GenreName = x.genre.Name;
                 return bookDto;
             }).ToList();
 

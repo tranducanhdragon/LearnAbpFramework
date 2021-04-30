@@ -63,6 +63,13 @@
                     }
                 },
                 {
+                    title: l('Genre'),
+                    data: "genreName",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
                     title: l('PublishDate'),
                     data: "publishDate",
                     render: function (data) {

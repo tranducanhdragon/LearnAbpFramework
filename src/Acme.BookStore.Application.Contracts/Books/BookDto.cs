@@ -6,8 +6,10 @@ namespace Acme.BookStore.Books
     public class BookDto : AuditedEntityDto<Guid>
     {
         public Guid AuthorId { get; set; }
+        public Guid GenreId { get; set; }
 
         public string AuthorName { get; set; }
+        public string GenreName { get; set; }
 
         public string Name { get; set; }
 

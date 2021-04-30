@@ -17,6 +17,7 @@ namespace Acme.BookStore.Web.Pages.Books
         public EditBookViewModel Book { get; set; }
 
         public List<SelectListItem> Authors { get; set; }
+        public List<SelectListItem> Genres { get; set; }
 
         private readonly IBookAppService _bookAppService;
 
@@ -32,6 +33,11 @@ namespace Acme.BookStore.Web.Pages.Books
 
             var authorLookup = await _bookAppService.GetAuthorLookupAsync();
             Authors = authorLookup.Items
+                .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
+                .ToList();
+
+            var genreLookup = await _bookAppService.GetGenreLookupAsync();
+            Genres = genreLookup.Items
                 .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
                 .ToList();
         }
@@ -54,7 +60,9 @@ namespace Acme.BookStore.Web.Pages.Books
             [SelectItems(nameof(Authors))]
             [DisplayName("Author")]
             public Guid AuthorId { get; set; }
-
+            [SelectItems(nameof(Genres))]
+            [DisplayName("Genre")]
+            public Guid GenreId { get; set; }
             [Required]
             [StringLength(128)]
             public string Name { get; set; }
