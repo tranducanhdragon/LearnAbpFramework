@@ -18,13 +18,13 @@
                 <abp-card-title>@L["Genres"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-right">
-                @*@if (await AuthorizationService.IsGrantedAsync(BookStorePermissions.Books.Create))
-                {*@
+                @if (await AuthorizationService.IsGrantedAsync(BookStorePermissions.Genres.Create))
+                {
                     <abp-button id="NewGenreButton"
                                 text="@L["NewGenre"].Value"
                                 icon="plus"
                                 button-type="Primary" />
-                @*}*@
+                }
             </abp-column>
         </abp-row>
     </abp-card-header>

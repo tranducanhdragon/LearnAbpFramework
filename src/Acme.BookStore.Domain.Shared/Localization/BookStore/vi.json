@@ -33,6 +33,8 @@
     "Permission:Books.Create": "Tạo những sách",
     "Permission:Books.Edit": "Sửa những sách",
     "Permission:Books.Delete": "Xóa những sách",
+    "Permission:Books.Borrow": "Mượn sách",
+    "Permission:Books.Return": "Trả lại sách",
     "BookStore:00001": "Đã có tác giả trùng tên với: {name}",
     "Permission:Authors": "Quản lý tác giả",
     "Permission:Authors.Create": "Tạo những tác giả",
@@ -40,12 +42,15 @@
     "Permission:Authors.Delete": "Xóa những tác giả",
     "Menu:Authors": "Tác giả",
     "Authors": "Tác giả",
-    "Author":  "Tác giả",
+    "Author": "Tác giả",
     "AuthorDeletionConfirmationMessage": "Cậu muốn xóa tác giả '{0}'?",
     "BirthDate": "Ngày sinh",
     "NewAuthor": "Tác giả mới",
     "Genres": "Thể loại",
     "NewGenre": "Thế loại mới",
-    "Menu:Genres": "Thể loại"
+    "Menu:Genres": "Thể loại",
+    "Borrow": "Mượn",
+    "BookCart": "Giỏ sách",
+    "NewBorrowBook": "Mượn mới sách"
   }
 }

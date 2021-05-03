@@ -19,7 +19,7 @@
                             [
                                 {
                                     text: l('Edit'),
-                                    //visible: abp.auth.isGranted('BookStore.Genres.Edit'),
+                                    visible: abp.auth.isGranted('BookStore.Genres.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                         //acme.bookStore.genres.genre
@@ -34,7 +34,7 @@
                                 },
                                 {
                                     text: l('Delete'),
-                                    //visible: abp.auth.isGranted('BookStore.Books.Delete'),
+                                    visible: abp.auth.isGranted('BookStore.Genres.Delete'),
                                     confirmMessage: function (data) {
                                         return l(
                                             'BookDeletionConfirmationMessage',

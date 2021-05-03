@@ -3,6 +3,9 @@
     var createModal = new abp.ModalManager(abp.appPath + 'Books/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'Books/EditModal');
 
+    //Mượn sách
+    var createBorrowModal = new abp.ModalManager(abp.appPath + 'Books/CreateBorrowModal');
+
     var dataTable = $('#BooksTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
@@ -17,6 +20,13 @@
                     rowAction: {
                         items:
                             [
+                                {
+                                    text: l('Borrow'),
+                                    visible: abp.auth.isGranted('BookStore.Books.Borrow'),
+                                    action: function (data) {
+                                        createBorrowModal.open({ id: data.record.id, userId: abp.currentUser.id });
+                                    }
+                                },
                                 {
                                     text: l('Edit'),
                                     visible: abp.auth.isGranted('BookStore.Books.Edit'),
@@ -110,5 +120,10 @@
     $('#NewBookButton').click(function (e) {
         e.preventDefault();
         createModal.open();
+    });
+
+    $('#BookCart').click(function (e) {
+        e.preventDefault();
+        
     });
 });

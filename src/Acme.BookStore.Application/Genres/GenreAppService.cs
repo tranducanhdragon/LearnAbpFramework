@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Authors;
+using Acme.BookStore.Permissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace Acme.BookStore.Genres
         public GenreAppService(IRepository<Genre, Guid> genre_repo) : base(genre_repo)
         {
             _genre_repo = genre_repo;
+            GetPolicyName = BookStorePermissions.Genres.Default;
+            GetListPolicyName = BookStorePermissions.Genres.Default;
+            CreatePolicyName = BookStorePermissions.Genres.Create;
+            UpdatePolicyName = BookStorePermissions.Genres.Edit;
+            DeletePolicyName = BookStorePermissions.Genres.Create;
         }
         public override async Task<PagedResultDto<GenreDto>> GetListAsync(PagedAndSortedResultRequestDto input) {
             var queryable = await _genre_repo.GetQueryableAsync();

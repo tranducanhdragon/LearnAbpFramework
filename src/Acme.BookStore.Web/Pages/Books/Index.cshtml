@@ -9,7 +9,7 @@
 @inject IAuthorizationService AuthorizationService
 @section scripts
 {
-    <abp-script src="/Pages/Books/Index.js"/>
+    <abp-script src="/Pages/Books/Index.js" />
 }
 
 <abp-card>
@@ -24,7 +24,14 @@
                     <abp-button id="NewBookButton"
                                 text="@L["NewBook"].Value"
                                 icon="plus"
-                                button-type="Primary"/>
+                                button-type="Primary" />
+                }
+                @if (await AuthorizationService.IsGrantedAsync(BookStorePermissions.Books.Borrow))
+                {
+                    <abp-button id="BookCart"
+                                text="@L["BookCart"].Value"
+                                icon="cart"
+                                button-type="Primary" />
                 }
             </abp-column>
         </abp-row>
