@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Books;
+using Acme.BookStore.Borrows;
 using Acme.BookStore.Genres;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
@@ -44,6 +45,15 @@ namespace Acme.BookStore.EntityFrameworkCore
                 b.ConfigureByConvention();
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
 
+            });
+            builder.Entity<Borrow>(b =>
+            {
+                b.ToTable(BookStoreConsts.DbTablePrefix + "Borrows",
+                    BookStoreConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.BookId).IsRequired();
+                b.Property(x => x.UserId).IsRequired();
+                b.Property(x => x.Quantity).IsRequired();
             });
         }
     }

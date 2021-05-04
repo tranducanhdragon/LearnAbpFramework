@@ -5,6 +5,7 @@
 
     //Mượn sách
     var createBorrowModal = new abp.ModalManager(abp.appPath + 'Books/CreateBorrowModal');
+    var boolCartModal - new abp.ModalManager(abp.appPath + 'Books/BookCartModal');
 
     var dataTable = $('#BooksTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -24,7 +25,7 @@
                                     text: l('Borrow'),
                                     visible: abp.auth.isGranted('BookStore.Books.Borrow'),
                                     action: function (data) {
-                                        createBorrowModal.open({ id: data.record.id, userId: abp.currentUser.id });
+                                        createBorrowModal.open({ bookId: data.record.id, userId: abp.currentUser.id });
                                     }
                                 },
                                 {

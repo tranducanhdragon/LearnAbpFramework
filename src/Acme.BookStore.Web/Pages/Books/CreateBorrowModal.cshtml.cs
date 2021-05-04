@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Acme.BookStore.Books;
+using Acme.BookStore.Borrows;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
@@ -14,33 +15,39 @@ namespace Acme.BookStore.Web.Pages.Books
     public class CreateBorrowModalModel : BookStorePageModel
     {
         [BindProperty]
-        public BookBorrow bookBorrow { get; set; }
-
-        public void OnGet(Guid id, Guid userId)
+        public CreateBookBorrowViewModel bookBorrow { get; set; }
+        private readonly IBorrowAppService _borrowAppService;
+        public CreateBorrowModalModel(IBorrowAppService borrowAppService)
         {
-            bookBorrow = new BookBorrow();
-            bookBorrow.Id = id;
+            _borrowAppService = borrowAppService;
+        }
+
+        public void OnGet(Guid bookId, Guid userId)
+        {
+            bookBorrow = new CreateBookBorrowViewModel();
+            bookBorrow.BookId = bookId;
             bookBorrow.UserId = userId;
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            await _borrowAppService.CreateAsync(ObjectMapper.Map<CreateBookBorrowViewModel, CreateUpdateBorrowDto>(bookBorrow));
             return NoContent();
         }
 
-        public class BookBorrow
+        public class CreateBookBorrowViewModel
         {
             [HiddenInput]
-            public Guid Id { get; set; } = Guid.Empty;
+            public Guid BookId { get; set; } = Guid.Empty;
             [HiddenInput]
             public Guid UserId { get; set; } = Guid.Empty;
             [Required]
             [DataType(DataType.Date)]
-            public DateTime NgayMuon { get; set; } = DateTime.Now;
+            public DateTime BorrowDate { get; set; } = DateTime.Now;
             [Required]
             [DataType(DataType.Date)]
-            public DateTime NgayHenTra { get; set; } = DateTime.Now;
+            public DateTime ExpectedReturnDate { get; set; } = DateTime.Now;
             [Required]
-            public int SoLuong { get; set; }
+            public int Quantity { get; set; }
         }
     }
 }

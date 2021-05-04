@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Books;
+using Acme.BookStore.Borrows;
 using Acme.BookStore.Genres;
 using AutoMapper;
 
@@ -23,6 +24,9 @@ namespace Acme.BookStore.Web
             //Genre Mapped
             CreateMap<Pages.Genres.CreateModalModel.CreateGenreViewModel, CreateUpdateGenreDto>();
             CreateMap<Pages.Genres.EditModalModel.EditGenreViewModel, CreateUpdateGenreDto>();
+
+            //Borrow Mapped
+            CreateMap<Pages.Books.CreateBorrowModalModel.CreateBookBorrowViewModel, CreateUpdateBorrowDto>();
         }
     }
 }

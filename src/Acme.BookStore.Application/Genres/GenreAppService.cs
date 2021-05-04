@@ -1,5 +1,6 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Acme.BookStore.Genres
 {
+    [Authorize(BookStorePermissions.Books.Default)]
     public class GenreAppService : CrudAppService<
             Genre, //The Genre entity
             GenreDto, //Used to show genres
