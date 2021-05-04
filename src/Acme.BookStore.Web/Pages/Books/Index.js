@@ -5,7 +5,7 @@
 
     //Mượn sách
     var createBorrowModal = new abp.ModalManager(abp.appPath + 'Books/CreateBorrowModal');
-    var boolCartModal - new abp.ModalManager(abp.appPath + 'Books/BookCartModal');
+    var bookCartModal = new abp.ModalManager(abp.appPath + 'Books/BookCartModal');
 
     var dataTable = $('#BooksTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -125,6 +125,6 @@
 
     $('#BookCart').click(function (e) {
         e.preventDefault();
-        
+        bookCartModal.open();
     });
 });

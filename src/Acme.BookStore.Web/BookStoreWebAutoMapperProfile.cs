@@ -3,6 +3,7 @@ using Acme.BookStore.Books;
 using Acme.BookStore.Borrows;
 using Acme.BookStore.Genres;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace Acme.BookStore.Web
 {
@@ -27,6 +28,7 @@ namespace Acme.BookStore.Web
 
             //Borrow Mapped
             CreateMap<Pages.Books.CreateBorrowModalModel.CreateBookBorrowViewModel, CreateUpdateBorrowDto>();
+            CreateMap<BorrowDto, Pages.Books.BookCartModalModel.CartViewModal>();
         }
     }
 }
