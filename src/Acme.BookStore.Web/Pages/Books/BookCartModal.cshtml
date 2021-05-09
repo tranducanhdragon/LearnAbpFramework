@@ -8,11 +8,19 @@
 @{
     Layout = null;
 }
-<abp-dynamic-form abp-model="lstBookCart" asp-page="/Books/BookCartModal">
+<abp-dynamic-form abp-model="cartModal" asp-page="/Books/BookCartModal">
     <abp-modal>
         <abp-modal-header title="@L["BookCart"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-form-content />
+            @foreach(var item in Model.cartModal.BookCart)
+            {
+                <p>@L["Name"].Value: @item.BookName</p>
+                <p>@L["BorrowDate"].Value: @item.BorrowDate</p>
+                <p>@L["ExpectedReturnDate"].Value: @item.ExpectedReturnDate</p>
+                <p>@L["Quantity"].Value: @item.Quantity</p>
+                <br/>
+            }
         </abp-modal-body>
         <abp-modal-footer></abp-modal-footer>
     </abp-modal>

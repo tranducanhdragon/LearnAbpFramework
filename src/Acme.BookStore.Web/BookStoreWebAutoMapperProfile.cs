@@ -12,6 +12,7 @@ namespace Acme.BookStore.Web
         public BookStoreWebAutoMapperProfile()
         {
             //Book Mapped
+            CreateMap<BookDto, Book>();
             CreateMap<BookDto, CreateUpdateBookDto>();
             CreateMap<Pages.Books.CreateModalModel.CreateBookViewModel, CreateUpdateBookDto>();
             CreateMap<BookDto, Pages.Books.EditModalModel.EditBookViewModel>();
@@ -28,7 +29,7 @@ namespace Acme.BookStore.Web
 
             //Borrow Mapped
             CreateMap<Pages.Books.CreateBorrowModalModel.CreateBookBorrowViewModel, CreateUpdateBorrowDto>();
-            CreateMap<BorrowDto, Pages.Books.BookCartModalModel.CartViewModal>();
+            CreateMap<BorrowDto, Pages.Books.BookCartModalModel.BookCartViewModal>();
         }
     }
 }

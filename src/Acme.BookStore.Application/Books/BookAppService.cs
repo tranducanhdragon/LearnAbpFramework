@@ -116,6 +116,11 @@ namespace Acme.BookStore.Books
             var genres = await _genreRepository.GetListAsync();
             return new ListResultDto<GenreLookupDto>(ObjectMapper.Map<List<Genre>, List<GenreLookupDto>>(genres));
         }
+        public async Task<ListResultDto<BookLookupDto>> GetBookLookupAsync()
+        {
+            var books = await Repository.GetListAsync();
+            return new ListResultDto<BookLookupDto>(ObjectMapper.Map<List<Book>, List<BookLookupDto>>(books));
+        }
 
         private static string NormalizeSorting(string sorting)
         {
